@@ -1,11 +1,15 @@
 require 'boot'
 
-class App < Sinatra::Base
+#Haven't made it work as Sinatra::Base in apache/passenger
+#class App < Sinatra::Base
+
+  get '/' do
+    "Hello there!"
+  end
 
   get '/channels' do
     content_type :json
-    Channel.find(:all).documents.to_json #I still don't know how to do this
-    #Channel.all.each {|document| document.to_json} #?
+    Channel.all.each.map {|document| (response ||= []) << document}.to_json
   end
 
   get '/sessions' do
@@ -54,4 +58,4 @@ class App < Sinatra::Base
     end
   end
 
-end
+#end
