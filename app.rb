@@ -4,7 +4,8 @@ class App < Sinatra::Base
 
   get '/channels' do
     content_type :json
-    Channel.all.documents.to_json
+    Channel.find(:all).documents.to_json #I still don't know how to do this
+    #Channel.all.each {|document| document.to_json} #?
   end
 
   get '/sessions' do
@@ -19,7 +20,7 @@ class App < Sinatra::Base
 
   post '/channels' do
     content_type :json
-    params = JSON.parse(request.body.read.to_s) 
+    params = JSON.parse(request.body.read.to_s)
     channel = Channel.create(params)
     
     if channel.valid?

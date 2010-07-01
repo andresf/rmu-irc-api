@@ -13,13 +13,13 @@ describe App do
   end
 
   it "responds to invalid channel post with errors" do
-    post "/channels", :channel => {}
+    post "/channels", :channel => {}.to_json
     last_response.body.should match /can.t be blank/
   end
 
   it "responds to valid channel post with the created channel" do
-    post "/channels", {:channel => {:name => "rmu-general", 
-      :server => "chat.freenode.net"}}.to_json
+    post "/channels", {:name => "rmu-general", 
+      :server => "chat.freenode.net"}.to_json
     last_response.body.should match /created_at/
   end
 
