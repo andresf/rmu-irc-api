@@ -2,6 +2,7 @@ source :gemcutter
 
 #Project requirements
 gem 'sinatra'
+gem 'json'
 
 #Component requirements
 gem 'mongoid'
