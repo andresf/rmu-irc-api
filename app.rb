@@ -19,7 +19,8 @@ class App < Sinatra::Base
 
   post '/channels' do
     content_type :json
-    channel = Channel.create(params[:channel])
+    params = JSON.parse(request.body.read.to_s) 
+    channel = Channel.create(params)
     
     if channel.valid?
       channel.to_json
@@ -30,7 +31,8 @@ class App < Sinatra::Base
 
   post '/sessions' do
     content_type :json
-    session = Session.create(params[:channel])
+    params = JSON.parse(request.body.read.to_s)
+    session = Session.create(params)
     
     if session.valid?
       session.to_json
@@ -41,7 +43,8 @@ class App < Sinatra::Base
 
   post '/messages' do
     content_type :json
-    message = Message.create(params[:channel])
+    params = JSON.parse(request.body.read.to_s)
+    message = Message.create(params)
     
     if message.valid?
       message.to_json

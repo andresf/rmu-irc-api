@@ -18,8 +18,8 @@ describe App do
   end
 
   it "responds to valid channel post with the created channel" do
-    post "/channels", :channel => {:name => "rmu-general", 
-      :server => "chat.freenode.net"}
+    post "/channels", {:channel => {:name => "rmu-general", 
+      :server => "chat.freenode.net"}}.to_json
     last_response.body.should match /created_at/
   end
 
